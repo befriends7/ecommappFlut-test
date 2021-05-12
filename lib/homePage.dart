@@ -21,7 +21,7 @@ import 'package:user_profile_avatar/user_profile_avatar.dart';
 
 import 'flashScreen.dart';
 
-
+int _n = 0;
 int finVal;
 
 class homePage extends StatefulWidget
@@ -455,58 +455,133 @@ class _homePage extends State<homePage>
 
                       child: Text(modl.dish_description,style: TextStyle(fontSize: 14,color: Colors.grey),)),
 
-                SizedBox(height:15,),
+                SizedBox(height:20,),
 
 
-                 Container(
+                 Align(
 
-                   width:double.infinity,
+                   alignment: Alignment.topLeft,
 
-                   padding: EdgeInsets.only(left: 5),
-
-                   child: Align(
-
-                     alignment: Alignment.topLeft,
-
-                     child: Container(
-
-                       width: 70,
-                       height: 70,
-
-                       child: GestureDetector(
-
-                         onLongPress: ()
-                         {
-
-                           if(finVal!=0) {
-                             model.orderDet(modl.dish_name, modl.dish_price,
-                                 finVal.toString(), modl.dish_calories);
-
-                           }
-                         },
-
-                         child: NumberInputWithIncrementDecrement(
-                           controller: TextEditingController(),
-                           min: 0,
-                           max: 100,
+                   child: Container(
 
 
-                           onDecrement: (decVal){
 
-                             finVal = decVal;
+                     decoration: BoxDecoration(
 
-                           },
+                       borderRadius: BorderRadius.circular(30),
+                       color: Colors.green
 
-
-                           onIncrement: ( newlyIncrementedValue) {
-
-                           finVal = newlyIncrementedValue;
-                           },
-                         ),
-                       ),
                      ),
+
+
+
+                     width: 120,
+
+                     child: Row(
+
+                       mainAxisAlignment: MainAxisAlignment.center,
+
+                       children: [
+
+
+                         GestureDetector(
+
+                           onTap: (){
+
+                            setState(() {
+
+                              minus();
+
+                            });;
+
+                           },
+
+                           child: CircleAvatar(
+
+                     backgroundColor: Colors.green,
+
+                             child: Icon(Icons.indeterminate_check_box,color: Colors.white,),
+
+                           ),
+                         ),
+
+
+                          Text('$_n',style: TextStyle(color: Colors.white),),
+
+                          GestureDetector(
+
+                            onTap: (){
+                              add();
+                            },
+
+                            child: CircleAvatar(
+
+                              backgroundColor: Colors.green,
+                              child: Icon(Icons.add_box,color: Colors.white,),
+
+                            ),
+                          )
+
+
+                       ],
+
+
+                     ),
+
+
                    ),
                  ),
+
+
+                 // Container(
+                 //
+                 //   width:double.infinity,
+                 //
+                 //   padding: EdgeInsets.only(left: 5),
+                 //
+                 //   child: Align(
+                 //
+                 //     alignment: Alignment.topLeft,
+                 //
+                 //     child: Container(
+                 //
+                 //       width: 70,
+                 //       height: 70,
+                 //
+                 //       child: GestureDetector(
+                 //
+                 //         onLongPress: ()
+                 //         {
+                 //
+                 //           if(finVal!=0) {
+                 //             model.orderDet(modl.dish_name, modl.dish_price,
+                 //                 finVal.toString(), modl.dish_calories);
+                 //
+                 //           }
+                 //         },
+                 //
+                 //         child: NumberInputWithIncrementDecrement(
+                 //           controller: TextEditingController(),
+                 //           min: 0,
+                 //           max: 100,
+                 //
+                 //
+                 //           onDecrement: (decVal){
+                 //
+                 //             finVal = decVal;
+                 //
+                 //           },
+                 //
+                 //
+                 //           onIncrement: ( newlyIncrementedValue) {
+                 //
+                 //           finVal = newlyIncrementedValue;
+                 //           },
+                 //         ),
+                 //       ),
+                 //     ),
+                 //   ),
+                 // ),
 
 
                   SizedBox(
@@ -548,7 +623,18 @@ class _homePage extends State<homePage>
   }
 
 
+ void minus() {
+   setState(() {
+     if (_n != 0)
+       _n--;
+   });
+ }
 
+ void add() {
+   setState(() {
+     _n++;
+   });
+ }
 
 
 }
