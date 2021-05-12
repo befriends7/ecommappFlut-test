@@ -414,8 +414,11 @@ class _homePage extends State<homePage>
                             child: CachedNetworkImage(fit: BoxFit.contain,
                               imageUrl: modl.dish_image,
                               placeholder: (context, url) => new CircularProgressIndicator(),
-                              errorWidget: (context, url, error) => Image.asset('assets/food.jpg'),
+                              errorWidget: (context, url, error) => Image.network('https://cdn.pixabay.com/photo/2015/05/04/10/16/vegetables-752153__340.jpg'),
                             ),
+
+
+
                         )
                       ],
 

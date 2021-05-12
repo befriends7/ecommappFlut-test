@@ -54,179 +54,228 @@ class _checkinPage extends State<checkinPage>
             ),
 
 
-            floatingActionButton: (
-
-            FloatingActionButton.extended(
-                backgroundColor: Color(0xFF1e6f5c),
-                icon:Icon(Icons.shopping_cart,color: Colors.white,),
-                onPressed: () async{
-
-                  User user = await model.authemail();
-                  final uid = user.uid;
-
-                  model.crtLoad.lst.clear();
-
-                  Toast.show('Order Successfully Placed', context);
-
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) =>homePage(name: user.displayName,id: uid)));
-
-
-
-                }, label: Text('Place Order',style: TextStyle(color: Colors.white),))
-
-            ),
-
-            body: Container(
-
-              padding: EdgeInsets.fromLTRB(20, 10, 20, 5),
-
-              width: double.infinity,
-              height: double.infinity,
-
-              child: ListView.builder(
-
-                  itemCount: model.crtLoad.lst.length,
-
-                  itemBuilder: (contxt,index){
-
-                    var finVal = model.crtLoad.lst[index];
-
-                    return Card(
-                      child: Container(
-
-                       padding: EdgeInsets.fromLTRB(10, 40, 5, 2),
-
-                        width: double.infinity,
-                        height: 200,
-
-                        child: Column(
-
-                          children: [
-
-                            Container(
-
-                              width: double.infinity,
-
-                              alignment: Alignment.topLeft,
-
-                              child: Row(
-
-                                children: [
-
-                                  Container(
-
-                                      width: 100,
-                                      child: Text(finVal.itemName,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold))),
-
-
-                                  SizedBox(
-
-                                    width: 1,
-
-                                  ),
-
-                                  Container(
-
-                                    width:114,
-                                    height: 40,
-
-                                    decoration: BoxDecoration(
-
-                                      color: Color(0xFF1e6f5c),
-                                        borderRadius: BorderRadius.all(Radius.circular(20))
-
-                                      ),
-
-
-                                    child: Row(
-
-                                      children: [
-
-
-                                        IconButton(icon:Icon(Icons.remove,color: Colors.white,), onPressed: (){
-
-
-                                          Toast.show("clicked minus", context);
-
-                                        }),
-
-                                        Text(finVal.numItems,style: TextStyle(color: Colors.white),),
-
-
-                                        IconButton(icon:Icon(Icons.add,color: Colors.white,), onPressed: (){
-
-                                          Toast.show("clicked plus", context);
-
-                                        }),
-
-
-                                      ],
-
-
-                                    ),
-
-                                  ),
-
-                                  SizedBox(
-
-                                    width: 10,
-
-                                  ),
-
-                                  Text('INR'+" "+finVal.price,style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
-
-                                ],
-
-                              )
-
-
-                            ),
-
-                            SizedBox(
-
-                              height: 20,
-
-                            ),
-
-                            Container(
-
-                              width: double.infinity,
-
-                              alignment: Alignment.topLeft,
-
-                              child: Text('INR'+" "+finVal.price,style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
-
-                            ),
-
-                            SizedBox(
-
-                              height: 10,
-
-                            ),
-
-                            Container(
-
-                              width: double.infinity,
-
-                              alignment: Alignment.topLeft,
-
-                              child: Text(finVal.calItems+" "+"calories",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
-
-                            )
-
-
-
-                          ],
-
-                        )
+            // floatingActionButton: (
+            //
+            // FloatingActionButton.extended(
+            //     backgroundColor: Color(0xFF1e6f5c),
+            //     icon:Icon(Icons.shopping_cart,color: Colors.white,),
+            //     onPressed: () async{
+            //
+            //       User user = await model.authemail();
+            //       final uid = user.uid;
+            //
+            //       model.crtLoad.lst.clear();
+            //
+            //       Toast.show('Order Successfully Placed', context);
+            //
+            //       Navigator.of(context).push(MaterialPageRoute(builder: (context) =>homePage(name: user.displayName,id: uid)));
+            //
+            //
+            //
+            //     }, label: Text('Place Order',style: TextStyle(color: Colors.white),))
+            //
+            // ),
+
+            body: CustomScrollView(
+              slivers:[
+
+          //       SliverList(
+          //         delegate: SliverChildListDelegate(
+          //            [
+          //
+          //              Container(
+          //
+          //         padding: EdgeInsets.fromLTRB(20, 10, 20, 5),
+          //
+          //         width: double.infinity,
+          //
+          //         child: ListView.builder(
+          //
+          //               itemCount: model.crtLoad.lst.length,
+          //
+          //               itemBuilder: (contxt,index){
+          //
+          //                 var finVal = model.crtLoad.lst[index];
+          //
+          //                 return Card(
+          //                   child: Container(
+          //
+          //                    padding: EdgeInsets.fromLTRB(10, 40, 5, 2),
+          //
+          //                     width: double.infinity,
+          //                     height: 200,
+          //
+          //                     child: Column(
+          //
+          //                       children: [
+          //
+          //                         Container(
+          //
+          //                           width: double.infinity,
+          //
+          //                           alignment: Alignment.topLeft,
+          //
+          //                           child: Row(
+          //
+          //                             children: [
+          //
+          //                               Container(
+          //
+          //                                   width: 100,
+          //                                   child: Text(finVal.itemName,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold))),
+          //
+          //
+          //                               SizedBox(
+          //
+          //                                 width: 1,
+          //
+          //                               ),
+          //
+          //                               Container(
+          //
+          //                                 width:114,
+          //                                 height: 40,
+          //
+          //                                 decoration: BoxDecoration(
+          //
+          //                                   color: Color(0xFF1e6f5c),
+          //                                     borderRadius: BorderRadius.all(Radius.circular(20))
+          //
+          //                                   ),
+          //
+          //
+          //                                 child: Row(
+          //
+          //                                   children: [
+          //
+          //
+          //                                     IconButton(icon:Icon(Icons.remove,color: Colors.white,), onPressed: (){
+          //
+          //
+          //                                       Toast.show("clicked minus", context);
+          //
+          //                                     }),
+          //
+          //                                     Text(finVal.numItems,style: TextStyle(color: Colors.white),),
+          //
+          //
+          //                                     IconButton(icon:Icon(Icons.add,color: Colors.white,), onPressed: (){
+          //
+          //                                       Toast.show("clicked plus", context);
+          //
+          //                                     }),
+          //
+          //
+          //                                   ],
+          //
+          //
+          //                                 ),
+          //
+          //                               ),
+          //
+          //                               SizedBox(
+          //
+          //                                 width: 10,
+          //
+          //                               ),
+          //
+          //                               Text('INR'+" "+finVal.price,style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
+          //
+          //                             ],
+          //
+          //                           )
+          //
+          //
+          //                         ),
+          //
+          //                         SizedBox(
+          //
+          //                           height: 20,
+          //
+          //                         ),
+          //
+          //                         Container(
+          //
+          //                           width: double.infinity,
+          //
+          //                           alignment: Alignment.topLeft,
+          //
+          //                           child: Text('INR'+" "+finVal.price,style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
+          //
+          //                         ),
+          //
+          //                         SizedBox(
+          //
+          //                           height: 10,
+          //
+          //                         ),
+          //
+          //                         Container(
+          //
+          //                           width: double.infinity,
+          //
+          //                           alignment: Alignment.topLeft,
+          //
+          //                           child: Text(finVal.calItems+" "+"calories",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
+          //
+          //                         )
+          //
+          //
+          //
+          //                       ],
+          //
+          //                     )
+          //
+          //                   ),
+          //                 );
+          //
+          //
+          //         }),
+          //
+          //     ),
+          // ]
+          //          ),
+          //       ),
+
+                SliverList(
+
+                  delegate: SliverChildListDelegate(
+                    [
+
+                      SizedBox(
+
+                        height: 10,
 
                       ),
-                    );
 
 
-              }),
+                    ]
 
+
+                  ),
+
+                )
+
+          ],
             ),
+
+            bottomNavigationBar: Container(
+
+
+
+              padding: EdgeInsets.only(left: 20,right: 20,bottom:5),
+
+              height: 60,
+
+              child: RaisedButton(
+
+              onPressed: () {},
+              color: Color(0xFF3a6351),
+                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+              textColor: Colors.white,
+              child: Text('Place Order',style: TextStyle(color: Colors.white,fontSize: 18),),
+              ),
+            )
 
 
           ),

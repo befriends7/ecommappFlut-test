@@ -47,8 +47,6 @@ class dataLoad
       }
     }
 
-    List k = modelLst;
-    List j = k;
 
     return modelLst;
 
