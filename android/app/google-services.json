@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "937811313286",
+    "project_id": "ecommapp-d0d73",
+    "storage_bucket": "ecommapp-d0d73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937811313286:android:42f4133109d99ccc840707",
+        "android_client_info": {
+          "package_name": "com.rovero.ecommapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937811313286-jbefsiipiocurar3c7evcqggdpocae9t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rovero.ecommapp",
+            "certificate_hash": "06188de3d63a2d25c19057f5743121c27e61588c"
+          }
+        },
+        {
+          "client_id": "937811313286-vq1rcqq00f93la7l0ibdptqs1eali9n2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYWM6l49csG_xf1IVrnae4sNPYtWz0OOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937811313286-vq1rcqq00f93la7l0ibdptqs1eali9n2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
