@@ -39,7 +39,7 @@ class dataLoad
 
           var catLst = itmLst[j];
 
-          cat_Dish_model model = new cat_Dish_model(catLst['dish_name'], catLst['dish_price'].toString(), catLst['dish_image'], catLst['dish_currency'], catLst['dish_calories'].toString(), catLst['dish_description'],catLst['addonCat']);
+          cat_Dish_model model = new cat_Dish_model(catLst['dish_name'], catLst['dish_price'].toString(), catLst['dish_image'], catLst['dish_currency'], catLst['dish_calories'].toString(), catLst['dish_description'],0,catLst['addonCat']);
           menu_List_model menuModel = menu_List_model(item[i]['menu_category'],model);
           modelLst.add(menuModel);
         }

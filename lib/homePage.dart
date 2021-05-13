@@ -16,6 +16,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stepper_counter_swipe/stepper_counter_swipe.dart';
 import 'package:toast/toast.dart';
 import 'package:user_profile_avatar/user_profile_avatar.dart';
 
@@ -23,6 +24,11 @@ import 'flashScreen.dart';
 
 int _n = 0;
 int finVal;
+
+List<cat_Dish_model> FinLsts = new List();
+
+
+
 
 class homePage extends StatefulWidget
 {
@@ -51,7 +57,8 @@ class _homePage extends State<homePage>
  String id;
  List<String> finTab= List();
  List<menu_List_model> chkList = List();
- List<cat_Dish_model> FinLsts = new List();
+ List<cat_Dish_model> FinLst = new List();
+
 
 
  _homePage(this.name,this.id);
@@ -311,7 +318,7 @@ class _homePage extends State<homePage>
   Widget dataCheck(int index,AsyncSnapshot snapshot,homeModel model)
   {
 
-    List<cat_Dish_model> FinLst = new List();
+    int val = 0;
 
     var i = 0 ;
 
@@ -458,132 +465,48 @@ class _homePage extends State<homePage>
                 SizedBox(height:20,),
 
 
-                 Align(
+                 Container(
 
-                   alignment: Alignment.topLeft,
-
-                   child: Container(
-
+                   width: double.infinity,
+                   height: 40,
 
 
-                     decoration: BoxDecoration(
 
-                       borderRadius: BorderRadius.circular(30),
-                       color: Colors.green
 
+                   child: Align(
+
+                     alignment: Alignment.topLeft,
+
+
+
+                     child:Container(
+
+                       width: 120,
+
+                       decoration: BoxDecoration(
+
+                           borderRadius: BorderRadius.circular(30),
+                           color: Colors.green
+
+                       ),
+
+                       child: StepperSwipe(
+                         initialValue:0,
+                         stepperValue:val,
+                         speedTransitionLimitCount: 3, //Trigger count for fast counting
+                         onChanged: (int val) { FinLst[index].counter = val;
+                         },
+                         firstIncrementDuration: Duration(milliseconds: 10), //Unit time before fast counting
+                         secondIncrementDuration: Duration(milliseconds: 10), //Unit time during fast counting
+                         direction: Axis.horizontal,
+                         dragButtonColor: Colors.green,withPlusMinus: true,
+                         maxValue: 50,
+                         minValue: 0,
+                       ),
                      ),
-
-
-
-                     width: 120,
-
-                     child: Row(
-
-                       mainAxisAlignment: MainAxisAlignment.center,
-
-                       children: [
-
-
-                         GestureDetector(
-
-                           onTap: (){
-
-                            setState(() {
-
-                              minus();
-
-                            });;
-
-                           },
-
-                           child: CircleAvatar(
-
-                     backgroundColor: Colors.green,
-
-                             child: Icon(Icons.indeterminate_check_box,color: Colors.white,),
-
-                           ),
-                         ),
-
-
-                          Text('$_n',style: TextStyle(color: Colors.white),),
-
-                          GestureDetector(
-
-                            onTap: (){
-                              add();
-                            },
-
-                            child: CircleAvatar(
-
-                              backgroundColor: Colors.green,
-                              child: Icon(Icons.add_box,color: Colors.white,),
-
-                            ),
-                          )
-
-
-                       ],
-
-
-                     ),
-
 
                    ),
                  ),
-
-
-                 // Container(
-                 //
-                 //   width:double.infinity,
-                 //
-                 //   padding: EdgeInsets.only(left: 5),
-                 //
-                 //   child: Align(
-                 //
-                 //     alignment: Alignment.topLeft,
-                 //
-                 //     child: Container(
-                 //
-                 //       width: 70,
-                 //       height: 70,
-                 //
-                 //       child: GestureDetector(
-                 //
-                 //         onLongPress: ()
-                 //         {
-                 //
-                 //           if(finVal!=0) {
-                 //             model.orderDet(modl.dish_name, modl.dish_price,
-                 //                 finVal.toString(), modl.dish_calories);
-                 //
-                 //           }
-                 //         },
-                 //
-                 //         child: NumberInputWithIncrementDecrement(
-                 //           controller: TextEditingController(),
-                 //           min: 0,
-                 //           max: 100,
-                 //
-                 //
-                 //           onDecrement: (decVal){
-                 //
-                 //             finVal = decVal;
-                 //
-                 //           },
-                 //
-                 //
-                 //           onIncrement: ( newlyIncrementedValue) {
-                 //
-                 //           finVal = newlyIncrementedValue;
-                 //           },
-                 //         ),
-                 //       ),
-                 //     ),
-                 //   ),
-                 // ),
-
-
                   SizedBox(
 
                     height: 15,
@@ -622,22 +545,10 @@ class _homePage extends State<homePage>
 
   }
 
-
- void minus() {
-   setState(() {
-     if (_n != 0)
-       _n--;
-   });
- }
-
- void add() {
-   setState(() {
-     _n++;
-   });
- }
-
-
 }
+
+
+
 
 
   

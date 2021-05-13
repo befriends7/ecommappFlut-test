@@ -7,6 +7,7 @@ class cat_Dish_model {
   String _dish_currency;
   String _dish_calories;
   String _dish_description;
+  int _counter;
   List _addonCat;
 
   cat_Dish_model(
@@ -16,7 +17,15 @@ class cat_Dish_model {
       this._dish_currency,
       this._dish_calories,
       this._dish_description,
+      this._counter,
       this._addonCat);
+
+
+  int get counter => _counter;
+
+  set counter(int value) {
+    _counter = value;
+  }
 
   List get addonCat => _addonCat;
 
