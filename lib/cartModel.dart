@@ -1,6 +1,6 @@
 
 
-class cartModel
+class cartModels
 {
 
 }
